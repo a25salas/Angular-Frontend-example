@@ -1,0 +1,65 @@
+<container>
+
+<h1>{{title}}</h1>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-md-6">
+                    <div class="form-group" ng-show="state=='update'">
+                        <label for="id">Id:</label>
+                        <span class="label label-info"> {{current.id}}</span>
+                    </div>
+                </div>
+          </div>
+
+           <div class="row">
+              <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" class="form-control" ng-model="current.name" />
+                    </div>
+                </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal" ng-show="state=='update'" ng-click="updateStore()" >Update</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" ng-show="state=='add'" ng-click="addStore()">Agregar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+   <h3>Stores data</h3>
+        <br />
+        <button class="btn btn-success"  data-toggle="modal" data-target="#myModal" ng-click="changeState();"><i class="glyphicon glyphicon-plus"></i> Agregar Store</button>
+        <button class="btn btn-default" ng-click="loadRemoteData()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
+        <br />
+        <br />
+        <table id="table" class="table table-striped table-hover" >
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="x in stores" >
+                <td>{{x.id}}</td>
+                <td>{{x.name}}</td>
+                <td><button class="btn btn-warning" ng-click="setCurrent(x)" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-pencil"></i> </button><button  class="btn btn-danger" ng-click="removeStore(x)"><i class="glyphicon glyphicon-remove"></i></td>
+            </tbody>
+        </table>
+
+</container>
